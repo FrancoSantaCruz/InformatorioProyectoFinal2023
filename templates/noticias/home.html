@@ -4,5 +4,13 @@
 {% block contenido %}
 
     <h1>HOME NOTICIAS 👴</h1>
-
+    
+    {% for n in noticias %}
+        <hr>
+        <div>
+            <h2>{{n.titulo}}</h2>
+            <h3>{{n.contenido}}</h3>
+            <img src="{{n.imagen.url}}" alt="" width="200px">
+        </div>
+    {% endfor %}
 {% endblock contenido %}

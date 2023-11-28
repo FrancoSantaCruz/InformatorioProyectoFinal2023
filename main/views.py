@@ -5,3 +5,4 @@ def home(request):
 
 def contacto(request):
     return render(request, 'contacto.html')
+

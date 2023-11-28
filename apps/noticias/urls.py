@@ -21,5 +21,9 @@ from . import views
 app_name = 'noticias'
 
 urlpatterns = [
-    path('', views.home_noticias, name="h_noticias")
+    # url para una view basada en funciones
+    # path('', views.home_noticias, name="h_noticias"),
+    # url para una view basada en clases
+    path('', views.home_noticias_clase.as_view(), name="h_noticias"),
+    path('new/', views.new_noticia.as_view(), name='new_noticia')
 ]

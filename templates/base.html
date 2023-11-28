@@ -18,19 +18,17 @@
                 <li><a href="{% url 'contact' %}">Contacto</a></li>
                 <!--                nombre de la app : nombre de la url     -->
                 <li><a href="{% url 'noticias:h_noticias' %}">Noticias</a></li>
+                <li><a href="{% url 'noticias:new_noticia' %}">Agregar noticia</a></li>
             </ul>
         </nav>
-
-        <img src="{% static 'img/dibu.jpg' %}" alt="">
+        <!-- <img src="{% static 'img/dibu.jpg' %}" alt=""> -->
     </header>
     <main>
         {% block contenido %}
 
-
         {% endblock contenido %}
     </main>
     <footer>
-
     </footer>
 </body>
 

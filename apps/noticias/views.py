@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from .models import Noticia
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
-from .forms import form_noticia
+from .forms import create_form, update_form
 # Create your views here.
 
 # VISTA BASADA EN FUNCIONES
@@ -29,7 +29,22 @@ class home_noticias_clase(ListView):
 
 class new_noticia(CreateView):
     model = Noticia
-    template_name = 'noticias/new_noticia.html'
-    form_class = form_noticia
+    template_name = 'noticias/create.html'
+    form_class = create_form
     success_url = reverse_lazy('noticias:h_noticias')
 
+def detail_noticia(request, pk):
+    ctx = {}
+    n = Noticia.objects.get(pk = pk)
+    ctx['noticia'] = n
+    return render(request, 'noticias/detail.html', ctx)
+
+class update_noticia(UpdateView):
+    model = Noticia
+    template_name = 'noticias/update.html'
+    form_class = update_form
+    success_url = reverse_lazy('noticias:h_noticias')
+
+class delete_noticia(DeleteView):
+    model = Noticia
+    success_url = reverse_lazy('noticias:h_noticias')

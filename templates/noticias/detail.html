@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<h3>{{noticia.titulo}}</h3>
+<div>
+    <h2>{{noticia.titulo}}</h2>
+    <h3>{{noticia.contenido}}</h3>
+    <img src="{{noticia.imagen.url}}" alt="" width="200px">
+</div>
+<a href="{% url 'noticias:update_noticia' noticia.pk %}">Edit</a>
+<a href="{% url 'noticias:delete_noticia' noticia.pk %}">Delete</a>
+
+{% endblock contenido %}

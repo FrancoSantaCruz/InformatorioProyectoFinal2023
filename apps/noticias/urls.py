@@ -25,5 +25,8 @@ urlpatterns = [
     # path('', views.home_noticias, name="h_noticias"),
     # url para una view basada en clases
     path('', views.home_noticias_clase.as_view(), name="h_noticias"),
-    path('new/', views.new_noticia.as_view(), name='new_noticia')
+    path('new/', views.new_noticia.as_view(), name='new_noticia'),
+    path('detail/<int:pk>', views.detail_noticia, name='detail_noticia'),
+    path('update/<int:pk>', views.update_noticia.as_view(), name='update_noticia'),
+    path('delete/<int:pk>', views.delete_noticia.as_view(), name='delete_noticia'),
 ]

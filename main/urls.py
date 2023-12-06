@@ -22,12 +22,17 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 
+# Auth 
+from django.contrib.auth import views as auth
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name='index'),
+    path('', views.home, name='home'),
     path('contacto', views.contacto, name='contact'),
     path('noticias/', include('apps.noticias.urls')),
     path('usuarios/', include('apps.usuarios.urls')),
+    path('login/', auth.LoginView.as_view(template_name='auth/login.html'), name='login'),
+    path('logout/', auth.LogoutView.as_view(), name='logout')
 ]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns +=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

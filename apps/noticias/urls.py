@@ -24,9 +24,15 @@ urlpatterns = [
     # url para una view basada en funciones
     # path('', views.home_noticias, name="h_noticias"),
     # url para una view basada en clases
+
+    # 127.0.0.1:8000/noticias/
     path('', views.home_noticias_clase.as_view(), name="h_noticias"),
+    # 127.0.0.1:8000/noticias/new/
     path('new/', views.new_noticia.as_view(), name='new_noticia'),
+    # 127.0.0.1:8000/noticias/detail/18293813
     path('detail/<int:pk>', views.detail_noticia, name='detail_noticia'),
+    # 127.0.0.1:8000/noticias/update/12838123
     path('update/<int:pk>', views.update_noticia.as_view(), name='update_noticia'),
+    # 127.0.0.1:8000/noticias/delete/19283812
     path('delete/<int:pk>', views.delete_noticia.as_view(), name='delete_noticia'),
 ]

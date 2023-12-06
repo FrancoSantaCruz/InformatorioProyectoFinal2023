@@ -14,11 +14,18 @@
         <nav>
             <h2>MENU</h2>
             <ul>
-                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'contact' %}">Contacto</a></li>
                 <!--                nombre de la app : nombre de la url     -->
                 <li><a href="{% url 'noticias:h_noticias' %}">Noticias</a></li>
                 <li><a href="{% url 'noticias:new_noticia' %}">Agregar noticia</a></li>
+                {% if user.is_authenticated %}
+                    <li>Welcome {{user.username}}</li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'usuarios:register' %}">Register</a></li>
+                {% endif %}
             </ul>
         </nav>
         <!-- <img src="{% static 'img/dibu.jpg' %}" alt=""> -->

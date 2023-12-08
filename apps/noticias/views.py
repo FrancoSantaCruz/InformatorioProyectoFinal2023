@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Noticia
+from .models import Noticia, Categoria
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
@@ -7,13 +7,23 @@ from .forms import create_form, update_form
 # Create your views here.
 
 # VISTA BASADA EN FUNCIONES
-# def home_noticias(request):
-#     # ORM
-#     noticias = Noticia.objects.all()
-#     # contexto
-#     ctx = {}
-#     ctx['noticias'] = noticias
-#     return render(request, 'noticias/home.html', ctx)
+def home_noticia(request):
+    ctx = {}
+    
+    categorias = Categoria.objects.all()
+    ctx['categorias'] = categorias
+
+    # Obtener el req.query. Si existe el filtro, me lo devuelve, si no, None
+    filtro = request.GET.get('cat', None)
+
+    if not filtro or filtro == '0':
+        noticias = Noticia.objects.all()
+    else:
+        cat_selec = Categoria.objects.get(pk = filtro)
+        noticias = Noticia.objects.filter(categoria = cat_selec)
+
+    ctx['noticias'] = noticias
+    return render(request, 'noticias/home.html', ctx)
 
 # VISTA BASADA EN CLASES
 # ListView -> findAll
@@ -22,10 +32,10 @@ from .forms import create_form, update_form
 # DeleteView -> deleteOne
 # CRUD -> Create Read Update Delete
 
-class home_noticias_clase(ListView):
-    model = Noticia
-    template_name = 'noticias/home.html'
-    context_object_name = 'noticias'
+# class home_noticias_clase(ListView):
+#     model = Noticia
+#     template_name = 'noticias/home.html'
+#     context_object_name = 'noticias'
 
 class new_noticia(CreateView):
     model = Noticia

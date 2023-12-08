@@ -22,11 +22,12 @@ app_name = 'noticias'
 
 urlpatterns = [
     # url para una view basada en funciones
-    # path('', views.home_noticias, name="h_noticias"),
-    # url para una view basada en clases
+    path('', views.home_noticia, name="h_noticias"),
 
+    # url para una view basada en clases
     # 127.0.0.1:8000/noticias/
-    path('', views.home_noticias_clase.as_view(), name="h_noticias"),
+    # path('', views.home_noticias_clase.as_view(), name="h_noticias"),
+
     # 127.0.0.1:8000/noticias/new/
     path('new/', views.new_noticia.as_view(), name='new_noticia'),
     # 127.0.0.1:8000/noticias/detail/18293813

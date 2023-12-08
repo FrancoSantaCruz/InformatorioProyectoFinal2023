@@ -4,15 +4,24 @@
 {% block contenido %}
 
 <h1>HOME NOTICIAS 👴</h1>
-
+<br>
+<section>
+    <p>Filtros</p>
+    <a href="?cat=0">Todas</a>
+    {% for c in categorias %}
+        <a href="?cat={{c.id}}">{{c.nombre}}</a> | 
+    {% endfor%}
+</section>
 {% for n in noticias %}
     <hr>
     <div>
         <a href="{% url 'noticias:detail_noticia' n.pk %}">
             <h2>{{n.titulo}}</h2>
-            <h3>{{n.contenido}}</h3>
-            <img src="{{n.imagen.url}}" alt="" width="200px">
         </a>
+            <h3>{{n.publicado}}</h3>
+            <img src="{{n.imagen.url}}" alt="" width="200px">
+        
     </div>
 {% endfor %}
+
 {% endblock contenido %}

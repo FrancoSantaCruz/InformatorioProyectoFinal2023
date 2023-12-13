@@ -11,6 +11,9 @@
     {% for c in categorias %}
         <a href="?cat={{c.id}}">{{c.nombre}}</a> | 
     {% endfor%}
+    <p>Order</p>
+    <a href="?order=asc">Fecha ascendente</a>
+    <a href="?order=dsc">Fecha descendente</a>
 </section>
 {% for n in noticias %}
     <hr>

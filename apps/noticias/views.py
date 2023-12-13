@@ -15,12 +15,18 @@ def home_noticia(request):
 
     # Obtener el req.query. Si existe el filtro, me lo devuelve, si no, None
     filtro = request.GET.get('cat', None)
+    orden = request.GET.get('order', None)
 
     if not filtro or filtro == '0':
         noticias = Noticia.objects.all()
     else:
         cat_selec = Categoria.objects.get(pk = filtro)
         noticias = Noticia.objects.filter(categoria = cat_selec)
+
+    if orden == 'asc':
+        noticias = noticias.order_by('publicado')
+    elif orden == 'dsc':
+        noticias = noticias.order_by('-publicado')
 
     ctx['noticias'] = noticias
     return render(request, 'noticias/home.html', ctx)

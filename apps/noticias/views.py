@@ -4,6 +4,8 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
 from .forms import create_form, update_form
+
+from apps.comentarios.models import Comentario
 # Create your views here.
 
 # VISTA BASADA EN FUNCIONES
@@ -53,6 +55,9 @@ def detail_noticia(request, pk):
     ctx = {}
     n = Noticia.objects.get(pk = pk)
     ctx['noticia'] = n
+
+    comentarios = Comentario.objects.filter(noticia = n)
+    ctx['comentarios'] = comentarios
     return render(request, 'noticias/detail.html', ctx)
 
 class update_noticia(UpdateView):
@@ -64,3 +69,5 @@ class update_noticia(UpdateView):
 class delete_noticia(DeleteView):
     model = Noticia
     success_url = reverse_lazy('noticias:h_noticias')
+
+

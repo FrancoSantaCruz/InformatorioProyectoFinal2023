@@ -6,9 +6,28 @@
     <h2>{{noticia.titulo}}</h2>
     <h3>{{noticia.contenido}}</h3>
     <img src="{{noticia.imagen.url}}" alt="" width="200px">
+    <small>Autor: {{noticia.autor}}</small>
 </div>
 <a href="{% url 'noticias:update_noticia' noticia.pk %}">Edit</a>
 <a href="{% url 'noticias:delete_noticia' noticia.pk %}">Delete</a>
 
-{% endblock contenido %}    
+<h2>Comentarios</h2>
 
+{% for c in comentarios %}
+<div>
+    <h4><strong>{{c.autor}} - </strong>{{c.contenido}}</h4>
+    <div>
+        <h6><a href="{% url 'comentarios:edit_com' c.pk %}">Edit</a></h6>
+        <h6><a href="{% url 'comentarios:delete_com' c.pk %}">Delete</a></h6>
+    </div>
+</div>
+{% endfor %}
+
+{% if request.user.is_authenticated %}
+<form action="{% url 'comentarios:new_com' noticia.pk %}" method="post">
+    {% csrf_token %}
+    <textarea name="comentario" id="" cols="30" rows="10"></textarea>
+    <input type="submit" value="Enviar">
+</form>
+{% endif %}
+{% endblock contenido %}

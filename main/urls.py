@@ -31,6 +31,7 @@ urlpatterns = [
     path('contacto', views.contacto, name='contact'),
     path('noticias/', include('apps.noticias.urls')),
     path('usuarios/', include('apps.usuarios.urls')),
+    path('comentarios/', include('apps.comentarios.urls')),
     path('login/', auth.LoginView.as_view(template_name='auth/login.html'), name='login'),
     path('logout/', auth.LogoutView.as_view(), name='logout')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

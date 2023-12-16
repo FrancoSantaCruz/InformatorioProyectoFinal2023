@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -12,6 +13,7 @@ class Categoria(models.Model):
 class Noticia(models.Model):
     publicado = models.DateTimeField('creado', auto_now_add=True)
     modificado = models.DateTimeField('modificado', auto_now= True)
+    autor = models.ForeignKey(User, on_delete=models.CASCADE)
     titulo = models.CharField(max_length= 250)
     contenido = models.TextField()
     imagen = models.ImageField(upload_to= 'noticias')
